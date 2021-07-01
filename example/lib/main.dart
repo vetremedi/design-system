@@ -23,7 +23,10 @@ class UIDesignView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = [...textWidgets, ...buttonWidgets];
+    final list = [
+      ...textWidgets,
+      ...buttonWidgets,
+    ];
     return Scaffold(
       body: ListView.separated(
         itemCount: textWidgets.length + buttonWidgets.length,
@@ -38,226 +41,208 @@ class UIDesignView extends StatelessWidget {
   List<Widget> get textWidgets => [
         UIText.heading(
           "Heading - XXLarge",
-          size: Size.XXLarge,
+          size: TxtSize.XXLarge,
+          color: TextSecondaryColor,
         ),
         UIText.heading(
           "Heading - XLarge",
-          size: Size.XLarge,
+          size: TxtSize.XLarge,
+          // color: TextPrimaryColor, no need default color
         ),
         UIText.heading(
           "Heading - Large",
-          size: Size.Large,
+          size: TxtSize.Large,
         ),
         UIText.heading(
           "Heading - Medium",
-          size: Size.Medium,
+          size: TxtSize.Medium,
         ),
         UIText.heading(
           "Heading - Small",
-          size: Size.Small,
+          size: TxtSize.Small,
         ),
         UIText.heading(
           "Heading - Tiny",
-          size: Size.Tiny,
+          size: TxtSize.Tiny,
         ),
         UIText.label(
           "Label - Large",
-          size: Size.Large,
+          size: TxtSize.Large,
+          color: TextSecondaryColor,
         ),
         UIText.label(
           "Label - Medium",
-          size: Size.Medium,
+          size: TxtSize.Medium,
         ),
         UIText.label(
           "Label - Small",
-          size: Size.Small,
+          size: TxtSize.Small,
         ),
         UIText.label(
           "Label - Tiny",
-          size: Size.Tiny,
+          size: TxtSize.Tiny,
+          color: TextPrimaryColor,
         ),
         UIText.paragraph(
           "Paragraph - Large",
-          size: Size.Large,
+          size: TxtSize.Large,
+          color: TextSecondaryColor,
         ),
         UIText.paragraph(
           "Paragraph - Medium",
-          size: Size.Medium,
+          size: TxtSize.Medium,
         ),
         UIText.paragraph(
           "Paragraph - Small",
-          size: Size.Small,
+          size: TxtSize.Small,
         ),
         UIText.paragraph(
           "Paragraph - Tiny",
-          size: Size.Tiny,
+          size: TxtSize.Tiny,
         ),
       ];
 
   List<Widget> get buttonWidgets => [
-        UIButton(
-          title: "Get started",
-          disabled: false,
-          outline: false,
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
         ),
-        UIButton(
-          title: "Get started",
-          disabled: true,
-          outline: false,
-        ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: BackgroundColor,
-            size: 18,
-          ),
-          disabled: false,
-          outline: false,
-        ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: TextSecondryColor,
-            size: 18,
-          ),
-          disabled: true,
-          outline: false,
-        ),
-        UIButton(
-          title: "Label",
-          disabled: false,
-          outline: false,
-          trailing: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: BackgroundColor,
-            size: 18,
-          ),
-        ),
-        UIButton(
-          title: "Label",
-          disabled: true,
-          outline: false,
-          trailing: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: TextSecondryColor,
-            size: 18,
-          ),
-        ),
-        UIButton(
-          title: "Get started",
-          outline: true,
-          disabled: false,
-        ),
-        UIButton(
-          title: "Get started",
-          outline: true,
+        UIButton.primary(
+          "Get Started",
           disabled: true,
         ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: CorePrimary,
-            size: 18,
-          ),
-          disabled: false,
-          outline: true,
+        UIButton.secondary(
+          "Get Started",
+          onTap: () {},
         ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        UIButton.tertiary(
+          "Get Started",
+          onTap: () {},
+        ),
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        UIButton.primary(
+          "Get Started",
           disabled: true,
-          outline: true,
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
-        UIButton(
-          title: "Label",
-          disabled: false,
-          outline: true,
-          trailing: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        UIButton.secondary(
+          "Get Started",
+          onTap: () {},
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
-        UIButton(
-          title: "Label",
+        UIButton.tertiary(
+          "Get Started",
+          onTap: () {},
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        // color variants
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Pharmacy,
+        ),
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Pharmacy,
           disabled: true,
-          outline: true,
-          trailing: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        ),
+        UIButton.secondary(
+          "Get Started",
+          appType: AppType.Pharmacy,
+          onTap: () {},
+        ),
+        UIButton.tertiary(
+          "Get Started",
+          appType: AppType.Pharmacy,
+          onTap: () {},
+        ),
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Pharmacy,
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        UIButton.primary(
+          "Get Started",
+          disabled: true,
+          appType: AppType.Pharmacy,
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        UIButton.secondary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Pharmacy,
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        UIButton.tertiary(
+          "Get Started",
+          appType: AppType.Pharmacy,
+          onTap: () {},
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
 
-        //teritary buttons
-        UIButton(
-          title: "Get started",
-          outline: true,
-          disabled: false,
-          textBtn: true,
+         UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Delivery,
         ),
-        UIButton(
-          title: "Get started",
-          outline: true,
-          textBtn: true,
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Delivery,
           disabled: true,
         ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: CorePrimary,
-            size: 18,
-          ),
-          disabled: false,
-          outline: true,
-          textBtn: true,
+        UIButton.secondary(
+          "Get Started",
+          appType: AppType.Delivery,
+          onTap: () {},
         ),
-        UIButton(
-          title: "Get started",
-          leading: Icon(
-            Icons.favorite_border,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        UIButton.tertiary(
+          "Get Started",
+          appType: AppType.Delivery,
+          onTap: () {},
+        ),
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Delivery,
+          leading: true,
+          leadingIcon: Icons.camera,
+        ),
+        UIButton.primary(
+          "Get Started",
+          onTap: () {},
           disabled: true,
-          outline: true,
-          textBtn: true,
+          appType: AppType.Delivery,
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
-        UIButton(
-          title: "Label",
-          disabled: false,
-          outline: true,
-          trailing: true,
-          textBtn: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        UIButton.secondary(
+          "Get Started",
+          onTap: () {},
+          appType: AppType.Delivery,
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
-        UIButton(
-          title: "Label",
-          disabled: true,
-          outline: true,
-          trailing: true,
-          textBtn: true,
-          tralingIcon: Icon(
-            Icons.arrow_forward,
-            color: TextSecondryColor,
-            size: 18,
-          ),
+        UIButton.tertiary(
+          "Get Started",
+          appType: AppType.Delivery,
+          onTap: () {},
+          leading: true,
+          leadingIcon: Icons.camera,
         ),
       ];
 }

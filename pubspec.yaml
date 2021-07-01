@@ -2,7 +2,7 @@ name: design_system
 description: Design system made for all the vetermedi projects
 version: 0.0.1
 author:
-homepage:
+homepage: 'vetermedi.com'
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

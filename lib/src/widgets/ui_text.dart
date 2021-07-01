@@ -1,36 +1,42 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-enum Size { XXLarge, XLarge, Large, Medium, Small, Tiny }
+enum TxtSize { XXLarge, XLarge, Large, Medium, Small, Tiny }
 enum TextType { Heading, Paragraph, Label }
 
 class UIText extends StatelessWidget {
-  final Size size;
+  final TxtSize size;
   final String text;
   final TextType type;
   final TextAlign textAlign;
   final FontWeight? fontWeight;
+  final Color? color;
 
   const UIText(this.text,
       {this.fontWeight,
+      this.color,
       this.textAlign = TextAlign.start,
-      this.size = Size.Medium,
+      this.size = TxtSize.Medium,
       this.type = TextType.Paragraph});
 
   const UIText.label(this.text,
       {this.fontWeight,
-      this.size = Size.Medium,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Label;
 
   const UIText.heading(this.text,
       {this.fontWeight,
-      this.size = Size.Medium,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Heading;
 
   const UIText.paragraph(this.text,
       {this.fontWeight,
-      this.size = Size.Medium,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Paragraph;
 
@@ -41,6 +47,7 @@ class UIText extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
           fontFamily: 'Inter',
+          color: color,
           fontWeight: fontWeight ?? _mapWeightType(type),
           fontSize: type == TextType.Heading
               ? _mapSizeHeading(size)
@@ -48,30 +55,30 @@ class UIText extends StatelessWidget {
     );
   }
 
-  double _mapSizeHeading(Size size) {
+  double _mapSizeHeading(TxtSize size) {
     switch (size) {
-      case Size.XXLarge:
+      case TxtSize.XXLarge:
         return 40;
-      case Size.XLarge:
+      case TxtSize.XLarge:
         return 36;
-      case Size.Large:
+      case TxtSize.Large:
         return 32;
-      case Size.Medium:
+      case TxtSize.Medium:
         return 28;
-      case Size.Small:
+      case TxtSize.Small:
         return 24;
       default:
         return 20;
     }
   }
 
-  double _mapSizeParagraph(Size size) {
+  double _mapSizeParagraph(TxtSize size) {
     switch (size) {
-      case Size.Large:
+      case TxtSize.Large:
         return 18;
-      case Size.Medium:
+      case TxtSize.Medium:
         return 16;
-      case Size.Small:
+      case TxtSize.Small:
         return 14;
       default:
         return 12;
