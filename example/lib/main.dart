@@ -23,47 +23,75 @@ class UIDesignView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final list = [...textWidgets, ...buttonWidgets];
     return Scaffold(
-      body: ListView(
+      body: ListView.separated(
+        itemCount: textWidgets.length + buttonWidgets.length,
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
-        children: [
-          ...buttonWidgets,
-        ],
+        itemBuilder: (BuildContext context, int index) => list[index],
+        separatorBuilder: (BuildContext context, int index) =>
+            verticalSpaceMedium,
       ),
     );
   }
 
   List<Widget> get textWidgets => [
-        UIText.headingXXLargeStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.headingXLargeStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.headingLargeStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.headingMediumStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.headingSmallStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.headingXSmallStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.labelLargeStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.labelMediumStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.labelSmallStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.labelTinyStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.paragraphLargeStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.paragraphMediumStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.paragraphSmallStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.paragraphTinyStyle("Design System"),
-        verticalSpaceMedium,
-        UIText.bodystyle("Design System"),
-        verticalSpaceMedium,
+        UIText.heading(
+          "Heading - XXLarge",
+          size: Size.XXLarge,
+        ),
+        UIText.heading(
+          "Heading - XLarge",
+          size: Size.XLarge,
+        ),
+        UIText.heading(
+          "Heading - Large",
+          size: Size.Large,
+        ),
+        UIText.heading(
+          "Heading - Medium",
+          size: Size.Medium,
+        ),
+        UIText.heading(
+          "Heading - Small",
+          size: Size.Small,
+        ),
+        UIText.heading(
+          "Heading - Tiny",
+          size: Size.Tiny,
+        ),
+        UIText.label(
+          "Label - Large",
+          size: Size.Large,
+        ),
+        UIText.label(
+          "Label - Medium",
+          size: Size.Medium,
+        ),
+        UIText.label(
+          "Label - Small",
+          size: Size.Small,
+        ),
+        UIText.label(
+          "Label - Tiny",
+          size: Size.Tiny,
+        ),
+        UIText.paragraph(
+          "Paragraph - Large",
+          size: Size.Large,
+        ),
+        UIText.paragraph(
+          "Paragraph - Medium",
+          size: Size.Medium,
+        ),
+        UIText.paragraph(
+          "Paragraph - Small",
+          size: Size.Small,
+        ),
+        UIText.paragraph(
+          "Paragraph - Tiny",
+          size: Size.Tiny,
+        ),
       ];
 
   List<Widget> get buttonWidgets => [
@@ -72,13 +100,11 @@ class UIDesignView extends StatelessWidget {
           disabled: false,
           outline: false,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           disabled: true,
           outline: false,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -89,7 +115,6 @@ class UIDesignView extends StatelessWidget {
           disabled: false,
           outline: false,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -100,7 +125,6 @@ class UIDesignView extends StatelessWidget {
           disabled: true,
           outline: false,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: false,
@@ -112,7 +136,6 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: true,
@@ -124,19 +147,16 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           outline: true,
           disabled: false,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           outline: true,
           disabled: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -147,7 +167,6 @@ class UIDesignView extends StatelessWidget {
           disabled: false,
           outline: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -158,7 +177,6 @@ class UIDesignView extends StatelessWidget {
           disabled: true,
           outline: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: false,
@@ -170,7 +188,6 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: true,
@@ -182,7 +199,6 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
 
         //teritary buttons
         UIButton(
@@ -191,14 +207,12 @@ class UIDesignView extends StatelessWidget {
           disabled: false,
           textBtn: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           outline: true,
           textBtn: true,
           disabled: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -210,7 +224,6 @@ class UIDesignView extends StatelessWidget {
           outline: true,
           textBtn: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Get started",
           leading: Icon(
@@ -222,7 +235,6 @@ class UIDesignView extends StatelessWidget {
           outline: true,
           textBtn: true,
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: false,
@@ -235,7 +247,6 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
         UIButton(
           title: "Label",
           disabled: true,
@@ -248,6 +259,5 @@ class UIDesignView extends StatelessWidget {
             size: 18,
           ),
         ),
-        verticalSpaceMedium,
       ];
 }
