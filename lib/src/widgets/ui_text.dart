@@ -1,76 +1,98 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:design_system/src/shared/app_colors.dart';
-import 'package:design_system/src/shared/styles.dart';
+
+enum TxtSize { XXLarge, XLarge, Large, Medium, Small, Tiny }
+enum TextType { Heading, Paragraph, Label }
 
 class UIText extends StatelessWidget {
+  final TxtSize size;
   final String text;
-  final TextStyle style;
-  final TextAlign alignment;
-  const UIText.headingXXLargeStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = headingXXLargeStyle,
-        alignment = align;
-  const UIText.headingXLargeStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = headingXLargeStyle,
-        alignment = align;
+  final TextType type;
+  final TextAlign textAlign;
+  final FontWeight? fontWeight;
+  final Color? color;
 
-  const UIText.headingLargeStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = headingLargeStyle,
-        alignment = align;
-  const UIText.headingMediumStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = headingMediumStyle,
-        alignment = align;
+  const UIText(this.text,
+      {this.fontWeight,
+      this.color,
+      this.textAlign = TextAlign.start,
+      this.size = TxtSize.Medium,
+      this.type = TextType.Paragraph});
 
-  const UIText.headingSmallStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = headingSmallStyle,
-        alignment = align;
+  const UIText.label(this.text,
+      {this.fontWeight,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
+      this.textAlign = TextAlign.start})
+      : type = TextType.Label;
 
-  const UIText.headingXSmallStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = headingXSmallStyle,
-        alignment = align;
-  const UIText.labelLargeStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = labelLargeStyle,
-        alignment = align;
+  const UIText.heading(this.text,
+      {this.fontWeight,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
+      this.textAlign = TextAlign.start})
+      : type = TextType.Heading;
 
-  const UIText.labelMediumStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = labelMediumStyle,
-        alignment = align;
-  const UIText.labelSmallStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = labelSmallStyle,
-        alignment = align;
-
-  const UIText.labelTinyStyle(this.text, {TextAlign align = TextAlign.start})
-      : style = labelTinyStyle,
-        alignment = align;
-  const UIText.paragraphLargeStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = paragraphLargeStyle,
-        alignment = align;
-
-  const UIText.paragraphMediumStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = paragraphMediumStyle,
-        alignment = align;
-  const UIText.paragraphSmallStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = paragraphSmallStyle,
-        alignment = align;
-
-  const UIText.paragraphTinyStyle(this.text,
-      {TextAlign align = TextAlign.start})
-      : style = paragraphTinyStyle,
-        alignment = align;
-
-  UIText.bodystyle(this.text,
-      {Color color = TextPrimaryColor, TextAlign align = TextAlign.start})
-      : style = bodystyle.copyWith(color: color),
-        alignment = align;
+  const UIText.paragraph(this.text,
+      {this.fontWeight,
+      this.color = TextPrimaryColor,
+      this.size = TxtSize.Medium,
+      this.textAlign = TextAlign.start})
+      : type = TextType.Paragraph;
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: style);
+    return Text(
+      text,
+      textAlign: textAlign,
+      style: TextStyle(
+          fontFamily: 'Inter',
+          color: color,
+          fontWeight: fontWeight ?? _mapWeightType(type),
+          fontSize: type == TextType.Heading
+              ? _mapSizeHeading(size)
+              : _mapSizeParagraph(size)),
+    );
+  }
+
+  double _mapSizeHeading(TxtSize size) {
+    switch (size) {
+      case TxtSize.XXLarge:
+        return 40;
+      case TxtSize.XLarge:
+        return 36;
+      case TxtSize.Large:
+        return 32;
+      case TxtSize.Medium:
+        return 28;
+      case TxtSize.Small:
+        return 24;
+      default:
+        return 20;
+    }
+  }
+
+  double _mapSizeParagraph(TxtSize size) {
+    switch (size) {
+      case TxtSize.Large:
+        return 18;
+      case TxtSize.Medium:
+        return 16;
+      case TxtSize.Small:
+        return 14;
+      default:
+        return 12;
+    }
+  }
+
+  FontWeight _mapWeightType(TextType type) {
+    switch (type) {
+      case TextType.Label:
+        return FontWeight.w600;
+      case TextType.Heading:
+        return FontWeight.bold;
+      default:
+        return FontWeight.normal;
+    }
   }
 }

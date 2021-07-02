@@ -1,106 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:design_system/src/shared/app_colors.dart';
-import 'package:design_system/src/shared/styles.dart';
+import 'package:design_system/design_system.dart';
+
+// enum BtnSize { Default, Small }
+enum CTAType { Primary, Secondary, Tertiary }
+enum AppType { Core, Pharmacy, Delivery }
 
 class UIButton extends StatelessWidget {
-  final String title;
   final bool disabled;
-  final Widget? leading;
-  final bool outline;
-  final bool trailing;
-  final Widget? tralingIcon;
-  final bool textBtn;
-
+  final String title;
+  final IconData? leadingIcon;
   final void Function()? onTap;
+  final CTAType ctaType;
+  final AppType appType;
 
   const UIButton({
     Key? key,
     required this.title,
     this.disabled = false,
-    this.leading,
-    this.outline = false,
+    this.leadingIcon,
     this.onTap,
-    this.trailing = false,
-    this.tralingIcon,
-    this.textBtn = false,
+    this.appType = AppType.Core,
+    this.ctaType = CTAType.Primary,
   }) : super(key: key);
+
+  const UIButton.primary(
+    this.title, {
+    this.disabled = false,
+    this.leadingIcon,
+    this.onTap,
+    this.appType = AppType.Core,
+  }) : ctaType = CTAType.Primary;
+
+  const UIButton.secondary(
+    this.title, {
+    this.disabled = false,
+    this.leadingIcon,
+    this.onTap,
+    this.appType = AppType.Core,
+  }) : ctaType = CTAType.Secondary;
+
+  const UIButton.tertiary(
+    this.title, {
+    this.disabled = false,
+    this.leadingIcon,
+    this.onTap,
+    this.appType = AppType.Core,
+  }) : ctaType = CTAType.Tertiary;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-          duration: Duration(milliseconds: 400),
-          width: double.infinity,
-          height: 48,
-          alignment: Alignment.center,
-          decoration: !outline
-              ? textBtn
-                  ? null
-                  : BoxDecoration(
-                      color: disabled ? DisabledColor : CorePrimary,
-                      borderRadius: BorderRadius.circular(8),
-                    )
-              : textBtn
-                  ? null
-                  : BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                          color: disabled ? DisabledColor : CorePrimary,
-                          width: 1),
-                    ),
-          child: !trailing
-              ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (leading != null) leading!,
-                    if (leading != null) SizedBox(width: 7),
-                    Text(
-                      title,
-                      style: bodystyle.copyWith(
-                        fontSize: 14,
-                        color: outline
-                            ? disabled
-                                ? TextSecondryColor
-                                : CorePrimary
-                            : disabled
-                                ? TextSecondryColor
-                                : BackgroundColor,
-                      ),
-                    ),
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Expanded(
-                      flex: 80,
-                      child: Center(
-                        child: Text(
-                          title,
-                          style: bodystyle.copyWith(
-                            fontSize: 14,
-                            color: outline
-                                ? disabled
-                                    ? TextSecondryColor
-                                    : CorePrimary
-                                : disabled
-                                    ? TextSecondryColor
-                                    : BackgroundColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(child: tralingIcon!),
-                    SizedBox(
-                      width: 40,
-                    ),
-                  ],
-                )),
+    return ElevatedButton.icon(
+      onPressed: !disabled ? onTap : null,
+      label: Text(
+        title,
+        style: TextStyle(
+            fontSize: 16.0,
+            fontFamily: 'Inter',
+            color: disabled
+                ? TextSecondaryColor
+                : ctaType == CTAType.Primary
+                    ? BackgroundColor
+                    : _mapButtonColor(appType)),
+      ),
+      style: disabled
+          ? ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.only(top: 14.0, bottom: 14.0)),
+              elevation: MaterialStateProperty.all<double>(0.0),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  ctaType == CTAType.Primary ? DisabledColor : BackgroundColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.0),
+                  side: ctaType == CTAType.Secondary
+                      ? BorderSide(color: DisabledColor)
+                      : BorderSide(color: Colors.transparent),
+                ),
+              ),
+            )
+          : ButtonStyle(
+              shadowColor: MaterialStateProperty.all<Color>(Color(0x62606170)),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.only(top: 14.0, bottom: 14.0)),
+              elevation: MaterialStateProperty.all<double>(0.0),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  ctaType != CTAType.Primary
+                      ? BackgroundColor
+                      : _mapButtonColor(appType)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                      side: ctaType == CTAType.Secondary
+                          ? BorderSide(color: _mapButtonColor(appType))
+                          : BorderSide(color: Colors.transparent)))),
+      icon: leadingIcon != null
+          ? Icon(
+              leadingIcon,
+              size: 20.0,
+              color: disabled
+                  ? TextSecondaryColor
+                  : ctaType == CTAType.Primary
+                      ? BackgroundColor
+                      : _mapButtonColor(appType),
+            )
+          : Container(),
     );
+  }
+}
+
+Color _mapButtonColor(AppType appType) {
+  switch (appType) {
+    case AppType.Delivery:
+      return DeliveryPrimary;
+    case AppType.Pharmacy:
+      return PharmacyPrimary;
+    default:
+      return CorePrimary;
   }
 }
