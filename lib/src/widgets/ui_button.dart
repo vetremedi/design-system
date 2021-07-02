@@ -69,9 +69,8 @@ class UIButton extends StatelessWidget {
       ),
       style: disabled
           ? ButtonStyle(
-              shadowColor: MaterialStateProperty.all<Color>(Colors.red),
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  EdgeInsets.only(top: 12.0, bottom: 12.0)),
+                  EdgeInsets.only(top: 14.0, bottom: 14.0)),
               elevation: MaterialStateProperty.all<double>(0.0),
               backgroundColor: MaterialStateProperty.all<Color>(
                   ctaType == CTAType.Primary ? DisabledColor : BackgroundColor),
@@ -87,7 +86,7 @@ class UIButton extends StatelessWidget {
           : ButtonStyle(
               shadowColor: MaterialStateProperty.all<Color>(Color(0x62606170)),
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  EdgeInsets.only(top: 12.0, bottom: 12.0)),
+                  EdgeInsets.only(top: 14.0, bottom: 14.0)),
               elevation: MaterialStateProperty.all<double>(0.0),
               backgroundColor: MaterialStateProperty.all<Color>(
                   ctaType != CTAType.Primary
