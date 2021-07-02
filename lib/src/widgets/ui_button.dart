@@ -7,7 +7,6 @@ enum AppType { Core, Pharmacy, Delivery }
 
 class UIButton extends StatelessWidget {
   final bool disabled;
-  final bool leading;
   final String title;
   final IconData? leadingIcon;
   final void Function()? onTap;
@@ -18,7 +17,6 @@ class UIButton extends StatelessWidget {
     Key? key,
     required this.title,
     this.disabled = false,
-    this.leading = false,
     this.leadingIcon,
     this.onTap,
     this.appType = AppType.Core,
@@ -28,7 +26,6 @@ class UIButton extends StatelessWidget {
   const UIButton.primary(
     this.title, {
     this.disabled = false,
-    this.leading = false,
     this.leadingIcon,
     this.onTap,
     this.appType = AppType.Core,
@@ -37,7 +34,6 @@ class UIButton extends StatelessWidget {
   const UIButton.secondary(
     this.title, {
     this.disabled = false,
-    this.leading = false,
     this.leadingIcon,
     this.onTap,
     this.appType = AppType.Core,
@@ -46,7 +42,6 @@ class UIButton extends StatelessWidget {
   const UIButton.tertiary(
     this.title, {
     this.disabled = false,
-    this.leading = false,
     this.leadingIcon,
     this.onTap,
     this.appType = AppType.Core,
@@ -98,7 +93,7 @@ class UIButton extends StatelessWidget {
                       side: ctaType == CTAType.Secondary
                           ? BorderSide(color: _mapButtonColor(appType))
                           : BorderSide(color: Colors.transparent)))),
-      icon: leading
+      icon: leadingIcon != null
           ? Icon(
               leadingIcon,
               size: 20.0,

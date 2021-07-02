@@ -122,25 +122,21 @@ class UIDesignView extends StatelessWidget {
         UIButton.primary(
           "Get Started",
           onTap: () {},
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.primary(
           "Get Started",
           disabled: true,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.secondary(
           "Get Started",
           onTap: () {},
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.tertiary(
           "Get Started",
           onTap: () {},
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         // color variants
@@ -169,32 +165,28 @@ class UIDesignView extends StatelessWidget {
           "Get Started",
           onTap: () {},
           appType: AppType.Pharmacy,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.primary(
           "Get Started",
           disabled: true,
           appType: AppType.Pharmacy,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.secondary(
           "Get Started",
           onTap: () {},
           appType: AppType.Pharmacy,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.tertiary(
           "Get Started",
           appType: AppType.Pharmacy,
           onTap: () {},
-          leading: true,
           leadingIcon: Icons.camera,
         ),
 
-         UIButton.primary(
+        UIButton.primary(
           "Get Started",
           onTap: () {},
           appType: AppType.Delivery,
@@ -219,7 +211,6 @@ class UIDesignView extends StatelessWidget {
           "Get Started",
           onTap: () {},
           appType: AppType.Delivery,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.primary(
@@ -227,21 +218,18 @@ class UIDesignView extends StatelessWidget {
           onTap: () {},
           disabled: true,
           appType: AppType.Delivery,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.secondary(
           "Get Started",
           onTap: () {},
           appType: AppType.Delivery,
-          leading: true,
           leadingIcon: Icons.camera,
         ),
         UIButton.tertiary(
           "Get Started",
           appType: AppType.Delivery,
           onTap: () {},
-          leading: true,
           leadingIcon: Icons.camera,
         ),
       ];
