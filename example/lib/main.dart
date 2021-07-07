@@ -10,9 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'AppFont'),
       home: UIDesignView(),
     );
   }
@@ -40,11 +38,6 @@ class UIDesignView extends StatelessWidget {
 
   List<Widget> get textWidgets => [
         UIText.heading(
-          "Heading - XXLarge",
-          size: TxtSize.XXLarge,
-          color: TextSecondaryColor,
-        ),
-        UIText.heading(
           "Heading - XLarge",
           size: TxtSize.XLarge,
           // color: TextPrimaryColor, no need default color
@@ -68,7 +61,7 @@ class UIDesignView extends StatelessWidget {
         UIText.label(
           "Label - Large",
           size: TxtSize.Large,
-          color: TextSecondaryColor,
+          // color: TextSecondaryColor,
         ),
         UIText.label(
           "Label - Medium",
@@ -86,7 +79,7 @@ class UIDesignView extends StatelessWidget {
         UIText.paragraph(
           "Paragraph - Large",
           size: TxtSize.Large,
-          color: TextSecondaryColor,
+          // color: TextSecondaryColor,
         ),
         UIText.paragraph(
           "Paragraph - Medium",

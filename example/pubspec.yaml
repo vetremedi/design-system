@@ -22,3 +22,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: AppFont
+      fonts:
+        - asset: fonts/Regular.otf
+          weight: 400
+        - asset: fonts/Medium.otf
+          weight: 500
+        - asset: fonts/SemiBold.otf
+          weight: 600
+        - asset: fonts/Bold.otf
+          weight: 700

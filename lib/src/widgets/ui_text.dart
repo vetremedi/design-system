@@ -1,7 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-enum TxtSize { XXLarge, XLarge, Large, Medium, Small, Tiny }
+enum TxtSize { XLarge, Large, Medium, Small, Tiny }
 enum TextType { Heading, Paragraph, Label }
 
 class UIText extends StatelessWidget {
@@ -46,7 +46,7 @@ class UIText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'AppFont',
           color: color,
           fontWeight: fontWeight ?? _mapWeightType(type),
           fontSize: type == TextType.Heading
@@ -57,8 +57,6 @@ class UIText extends StatelessWidget {
 
   double _mapSizeHeading(TxtSize size) {
     switch (size) {
-      case TxtSize.XXLarge:
-        return 40;
       case TxtSize.XLarge:
         return 36;
       case TxtSize.Large:
@@ -68,20 +66,20 @@ class UIText extends StatelessWidget {
       case TxtSize.Small:
         return 24;
       default:
-        return 20;
+        return 22;
     }
   }
 
   double _mapSizeParagraph(TxtSize size) {
     switch (size) {
       case TxtSize.Large:
-        return 18;
+        return 20;
       case TxtSize.Medium:
-        return 16;
+        return 18;
       case TxtSize.Small:
-        return 14;
+        return 16;
       default:
-        return 12;
+        return 14;
     }
   }
 

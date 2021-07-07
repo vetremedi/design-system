@@ -55,7 +55,7 @@ class UIButton extends StatelessWidget {
         title,
         style: TextStyle(
             fontSize: 16.0,
-            fontFamily: 'Inter',
+            fontFamily: 'AppFont',
             color: disabled
                 ? TextSecondaryColor
                 : ctaType == CTAType.Primary
@@ -83,6 +83,13 @@ class UIButton extends StatelessWidget {
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                   EdgeInsets.only(top: 14.0, bottom: 14.0)),
               elevation: MaterialStateProperty.all<double>(0.0),
+              overlayColor: MaterialStateProperty.resolveWith(
+                (states) {
+                  return states.contains(MaterialState.pressed)
+                      ? _mapButtonOverlayColor(appType, ctaType)
+                      : null;
+                },
+              ),
               backgroundColor: MaterialStateProperty.all<Color>(
                   ctaType != CTAType.Primary
                       ? BackgroundColor
@@ -116,5 +123,22 @@ Color _mapButtonColor(AppType appType) {
       return PharmacyPrimary;
     default:
       return CorePrimary;
+  }
+}
+
+Color _mapButtonOverlayColor(AppType appType, CTAType ctaType) {
+  switch (appType) {
+    case AppType.Delivery:
+      return ctaType == CTAType.Primary
+          ? Colors.white10
+          : DeliveryPrimary.withOpacity(.2);
+    case AppType.Pharmacy:
+      return ctaType == CTAType.Primary
+          ? Colors.white10
+          : PharmacyPrimary.withOpacity(.2);
+    default:
+      return ctaType == CTAType.Primary
+          ? Colors.white10
+          : CorePrimary.withOpacity(.2);
   }
 }
