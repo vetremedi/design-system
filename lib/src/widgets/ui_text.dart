@@ -46,7 +46,6 @@ class UIText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-          fontFamily: 'AppFont',
           color: color,
           fontWeight: fontWeight ?? _mapWeightType(type),
           fontSize: type == TextType.Heading
