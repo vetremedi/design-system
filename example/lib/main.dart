@@ -16,13 +16,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
+TextEditingController editingController = TextEditingController();
+
 class UIDesignView extends StatelessWidget {
   const UIDesignView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final list = [
       ...textWidgets,
+      ...inputWidgets,
       ...buttonWidgets,
     ];
     return Scaffold(
@@ -95,6 +97,34 @@ class UIDesignView extends StatelessWidget {
         ),
       ];
 
+  List<Widget> get inputWidgets => [
+        UIInput(
+            hint: "Enter Your Details",
+            leadingIcon: Icons.person,
+            controller: editingController),
+        UIInput(
+            hint: "Enter Your Details",
+            leadingIcon: Icons.person,
+            appType: AppType.Pharmacy,
+            errorText: "something went wrong ",
+            controller: editingController),
+        UIInput(
+            hint: "Enter Your Details",
+            leadingIcon: Icons.person,
+            appType: AppType.Pharmacy,
+            controller: editingController),
+        UIInput(
+            hint: "Enter Your Details",
+            leadingIcon: Icons.person,
+            appType: AppType.Delivery,
+            controller: editingController),
+        UIInput(
+            hint: "Enter OTP here",
+            trailingIcon: Icons.ac_unit,
+            leadingIcon: Icons.person,
+            appType: AppType.Pharmacy,
+            controller: editingController),
+      ];
   List<Widget> get buttonWidgets => [
         UIButton.primary(
           "Get Started",

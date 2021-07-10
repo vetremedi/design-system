@@ -1,52 +1,74 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:design_system/src/shared/app_colors.dart';
+
+import '../../design_system.dart';
 
 class UIInput extends StatelessWidget {
+  final String hint;
+  final String? errorText;
   final TextEditingController controller;
-  final String placeholder;
-  final Widget? leading;
-  final Widget? trailing;
-  final void Function()? trailingTapped;
-  final bool password;
-  final circularBorder =
-      OutlineInputBorder(borderRadius: BorderRadius.circular(8));
-  UIInput(
-      {Key? key,
-      required this.controller,
-      this.placeholder = "",
-      this.leading,
-      this.trailing,
-      this.trailingTapped,
-      this.password = false})
-      : super(key: key);
+  final AppType appType;
+  final IconData? leadingIcon;
+  final IconData? trailingIcon;
 
+  const UIInput(
+      {Key? key,
+      this.appType = AppType.Core,
+      this.errorText,
+      required this.hint,
+      required this.leadingIcon,
+      this.trailingIcon,
+      required this.controller})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
-      style: TextStyle(height: 1),
-      obscureText: password,
+      style: TextStyle(fontSize: 16.0),
       decoration: InputDecoration(
-        prefix: leading,
-        suffix: trailing != null
-            ? GestureDetector(
-                child: trailing,
-                onTap: trailingTapped,
-              )
-            : null,
-        hintText: placeholder,
-        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        filled: true,
-        fillColor: CorePrimary,
-        border:
-            circularBorder.copyWith(borderSide: BorderSide(color: CorePrimary)),
-        errorBorder:
-            circularBorder.copyWith(borderSide: BorderSide(color: Colors.red)),
-        focusedBorder:
-            circularBorder.copyWith(borderSide: BorderSide(color: CorePrimary)),
-        enabledBorder:
-            circularBorder.copyWith(borderSide: BorderSide(color: CorePrimary)),
+        prefixIcon: Icon(
+          leadingIcon,
+          color: Colors.black54,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: BorderSide(color: _mapInputColor(appType), width: 1.6),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: BorderSide(color: ErrorColor, width: 1.6),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: BorderSide(color: ErrorColor, width: 1.6),
+        ),
+        errorText: errorText,
+        errorStyle: TextStyle(color: ErrorColor, fontSize: 16.0),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: BorderSide(
+            color: OutlineColor,
+            width: 2.0,
+          ),
+        ),
+        hintText: hint,
+        hintStyle: TextStyle(color: TextSecondaryColor),
+        suffixIcon: Icon(
+          trailingIcon != null ? trailingIcon : null,
+          color: controller.text.isEmpty ? OutlineColor : Colors.black54,
+        ),
       ),
     );
+  }
+}
+
+Color _mapInputColor(AppType appType) {
+  switch (appType) {
+    case AppType.Delivery:
+      return DeliveryPrimary;
+    case AppType.Pharmacy:
+      return PharmacyPrimary;
+    default:
+      return CorePrimary;
   }
 }
