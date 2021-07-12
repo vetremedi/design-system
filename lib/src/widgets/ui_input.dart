@@ -10,11 +10,15 @@ class UIInput extends StatelessWidget {
   final AppType appType;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
+  final void Function(String)? onChanged;
+  final TextInputType inputType;
 
   const UIInput(
       {Key? key,
       this.appType = AppType.Core,
       this.errorText,
+      this.onChanged,
+      this.inputType = TextInputType.text,
       required this.hint,
       required this.leadingIcon,
       this.trailingIcon,
@@ -24,6 +28,8 @@ class UIInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: inputType,
+      onChanged: onChanged,
       style: TextStyle(fontSize: 16.0),
       decoration: InputDecoration(
         prefixIcon: Icon(
