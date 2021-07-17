@@ -102,6 +102,7 @@ class UIDesignView extends StatelessWidget {
             hint: "Enter Your Details",
             leadingIcon: Icons.person,
             inputType: TextInputType.number,
+            maxLength: 10,
             onChanged: (val) {
               print(val);
             },
