@@ -12,9 +12,11 @@ class UIInput extends StatelessWidget {
   final IconData? trailingIcon;
   final void Function(String)? onChanged;
   final TextInputType inputType;
+  final int? maxLength;
 
   const UIInput(
       {Key? key,
+      this.maxLength,
       this.appType = AppType.Core,
       this.errorText,
       this.onChanged,
@@ -28,10 +30,12 @@ class UIInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      maxLength: maxLength,
       keyboardType: inputType,
       onChanged: onChanged,
       style: TextStyle(fontSize: 16.0),
       decoration: InputDecoration(
+        counterText: "",
         prefixIcon: Icon(
           leadingIcon,
           color: Colors.black54,
