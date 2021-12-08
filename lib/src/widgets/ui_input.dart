@@ -1,72 +1,106 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../design_system.dart';
 
+const Color kOutlineColor = Color(0xFFE9E9EB);
+const Color kTextSecondaryLight = Color(0xFF666666);
+const Color kDisabledColor = Color(0xFF666666);
+const Color kPharmacy = Color(0xFF4CAF50);
+
 class UIInput extends StatelessWidget {
-  final String hint;
-  final String? errorText;
+  final String? label;
+  final String? placeholder;
+  final String? helper;
+  final bool hasError;
+  final Widget? leading;
   final TextEditingController controller;
   final AppType appType;
-  final IconData? leadingIcon;
-  final IconData? trailingIcon;
+
   final void Function(String)? onChanged;
   final TextInputType inputType;
   final int? maxLength;
+  final bool disabled;
 
-  const UIInput(
-      {Key? key,
-      this.maxLength,
-      this.appType = AppType.Core,
-      this.errorText,
-      this.onChanged,
-      this.inputType = TextInputType.text,
-      required this.hint,
-      required this.leadingIcon,
-      this.trailingIcon,
-      required this.controller})
-      : super(key: key);
+  const UIInput({
+    Key? key,
+    required this.controller,
+    this.disabled = false,
+    this.hasError = false,
+    this.inputType = TextInputType.text,
+    this.appType = AppType.Core,
+    this.label,
+    this.placeholder,
+    this.helper,
+    this.leading,
+    this.onChanged,
+    this.maxLength,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      maxLength: maxLength,
-      keyboardType: inputType,
-      onChanged: onChanged,
-      style: TextStyle(fontSize: 16.0),
-      decoration: InputDecoration(
-        counterText: "",
-        prefixIcon: Icon(
-          leadingIcon,
-          color: Colors.black54,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
-          borderSide: BorderSide(color: _mapInputColor(appType), width: 1.6),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
-          borderSide: BorderSide(color: ErrorColor, width: 1.6),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
-          borderSide: BorderSide(color: ErrorColor, width: 1.6),
-        ),
-        errorText: errorText,
-        errorStyle: TextStyle(color: ErrorColor, fontSize: 16.0),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
-          borderSide: BorderSide(
-            color: OutlineColor,
-            width: 2.0,
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (label != null)
+            Text(
+              "$label",
+              style: const TextStyle(color: kTextSecondaryLight),
+            ),
+          const SizedBox(
+            height: 6,
           ),
-        ),
-        hintText: hint,
-        hintStyle: TextStyle(color: TextSecondaryColor),
-        suffixIcon: Icon(
-          trailingIcon != null ? trailingIcon : null,
-          color: controller.text.isEmpty ? OutlineColor : Colors.black54,
-        ),
+          TextFormField(
+            controller: controller,
+            maxLength: maxLength,
+            keyboardType: inputType,
+            onChanged: onChanged,
+            style: const TextStyle(fontSize: 16.0),
+            decoration: InputDecoration(
+              fillColor: disabled ? kDisabledColor : null,
+              hintText: placeholder,
+              prefixIcon: leading,
+              enabled: !disabled,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0),
+                borderSide:
+                    BorderSide(color: _mapInputColor(appType), width: 1.6),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0),
+                borderSide: const BorderSide(
+                  color: kOutlineColor,
+                  width: 2.0,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0),
+                borderSide: const BorderSide(
+                  color: kOutlineColor,
+                  width: 2.0,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0),
+                borderSide: const BorderSide(
+                  color: kOutlineColor,
+                  width: 2.0,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          if (helper != null)
+            Text(
+              "$helper",
+              style:
+                  TextStyle(color: hasError ? ErrorColor : kTextSecondaryLight),
+            ),
+        ],
       ),
     );
   }
@@ -77,7 +111,7 @@ Color _mapInputColor(AppType appType) {
     case AppType.Delivery:
       return DeliveryPrimary;
     case AppType.Pharmacy:
-      return PharmacyPrimary;
+      return kPharmacy;
     default:
       return CorePrimary;
   }

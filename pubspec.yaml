@@ -1,7 +1,6 @@
 name: design_system
 description: Design system made for all the vetermedi projects
 version: 0.0.1
-author:
 homepage: 'vetermedi.com'
 
 environment:

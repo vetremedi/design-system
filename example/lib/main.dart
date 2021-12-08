@@ -99,8 +99,8 @@ class UIDesignView extends StatelessWidget {
 
   List<Widget> get inputWidgets => [
         UIInput(
-            hint: "Enter Your Details",
-            leadingIcon: Icons.person,
+            placeholder: "Enter Your Details",
+            leading: const Icon(Icons.person),
             inputType: TextInputType.number,
             maxLength: 10,
             onChanged: (val) {
@@ -108,25 +108,24 @@ class UIDesignView extends StatelessWidget {
             },
             controller: editingController),
         UIInput(
-            hint: "Enter Your Details",
-            leadingIcon: Icons.person,
+            placeholder: "Enter Your Details",
+            leading: const Icon(Icons.person),
             appType: AppType.Pharmacy,
-            errorText: "something went wrong ",
+            helper: "something went wrong ",
             controller: editingController),
         UIInput(
-            hint: "Enter Your Details",
-            leadingIcon: Icons.person,
+            placeholder: "Enter Your Details",
+            leading: const Icon(Icons.person),
             appType: AppType.Pharmacy,
             controller: editingController),
         UIInput(
-            hint: "Enter Your Details",
-            leadingIcon: Icons.person,
+            placeholder: "Enter Your Details",
+            leading: const Icon(Icons.person),
             appType: AppType.Delivery,
             controller: editingController),
         UIInput(
-            hint: "Enter OTP here",
-            trailingIcon: Icons.ac_unit,
-            leadingIcon: Icons.person,
+            placeholder: "Enter OTP here",
+            leading: const Icon(Icons.person),
             appType: AppType.Pharmacy,
             controller: editingController),
       ];
