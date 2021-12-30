@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../design_system.dart';
 
-const Color kOutlineColor = Color(0xFFE9E9EB);
-const Color kTextSecondaryLight = Color(0xFF666666);
-const Color kDisabledColor = Color(0xFF666666);
-const Color kPharmacy = Color(0xFF4CAF50);
-
 class UIInput extends StatelessWidget {
   final String? label;
   final String? placeholder;
@@ -47,7 +42,7 @@ class UIInput extends StatelessWidget {
           if (label != null)
             Text(
               "$label",
-              style: const TextStyle(color: kTextSecondaryLight),
+              style: const TextStyle(color: kTextSecondaryLightColor),
             ),
           const SizedBox(
             height: 6,
@@ -97,8 +92,8 @@ class UIInput extends StatelessWidget {
           if (helper != null)
             Text(
               "$helper",
-              style:
-                  TextStyle(color: hasError ? ErrorColor : kTextSecondaryLight),
+              style: TextStyle(
+                  color: hasError ? kErrorColor : kTextSecondaryLightColor),
             ),
         ],
       ),
@@ -109,10 +104,10 @@ class UIInput extends StatelessWidget {
 Color _mapInputColor(AppType appType) {
   switch (appType) {
     case AppType.Delivery:
-      return DeliveryPrimary;
+      return kDeliveryColor;
     case AppType.Pharmacy:
-      return kPharmacy;
+      return kPharmacyColor;
     default:
-      return CorePrimary;
+      return kCoreColor;
   }
 }

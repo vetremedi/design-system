@@ -76,7 +76,6 @@ class UIDesignView extends StatelessWidget {
         UIText.label(
           "Label - Tiny",
           size: TxtSize.Tiny,
-          color: TextPrimaryColor,
         ),
         UIText.paragraph(
           "Paragraph - Large",

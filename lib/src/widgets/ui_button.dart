@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter/material.dart';
 
 // enum BtnSize { Default, Small }
 enum CTAType { Primary, Secondary, Tertiary }
@@ -57,9 +57,9 @@ class UIButton extends StatelessWidget {
             fontSize: 16.0,
             fontFamily: 'AppFont',
             color: disabled
-                ? TextSecondaryColor
+                ? kTextSecondaryLightColor
                 : ctaType == CTAType.Primary
-                    ? BackgroundColor
+                    ? kBackgroundColor
                     : _mapButtonColor(appType)),
       ),
       style: disabled
@@ -68,12 +68,14 @@ class UIButton extends StatelessWidget {
                   EdgeInsets.only(top: 14.0, bottom: 14.0)),
               elevation: MaterialStateProperty.all<double>(0.0),
               backgroundColor: MaterialStateProperty.all<Color>(
-                  ctaType == CTAType.Primary ? DisabledColor : BackgroundColor),
+                  ctaType == CTAType.Primary
+                      ? kDisabledColor
+                      : kBackgroundColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                   side: ctaType == CTAType.Secondary
-                      ? BorderSide(color: DisabledColor)
+                      ? BorderSide(color: kDisabledColor)
                       : BorderSide(color: Colors.transparent),
                 ),
               ),
@@ -92,7 +94,7 @@ class UIButton extends StatelessWidget {
               ),
               backgroundColor: MaterialStateProperty.all<Color>(
                   ctaType != CTAType.Primary
-                      ? BackgroundColor
+                      ? kBackgroundColor
                       : _mapButtonColor(appType)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -105,9 +107,9 @@ class UIButton extends StatelessWidget {
               leadingIcon,
               size: 20.0,
               color: disabled
-                  ? TextSecondaryColor
+                  ? kTextSecondaryLightColor
                   : ctaType == CTAType.Primary
-                      ? BackgroundColor
+                      ? kBackgroundColor
                       : _mapButtonColor(appType),
             )
           : Container(),
@@ -118,11 +120,11 @@ class UIButton extends StatelessWidget {
 Color _mapButtonColor(AppType appType) {
   switch (appType) {
     case AppType.Delivery:
-      return DeliveryPrimary;
+      return kDeliveryColor;
     case AppType.Pharmacy:
-      return PharmacyPrimary;
+      return kPharmacyColor;
     default:
-      return CorePrimary;
+      return kCoreColor;
   }
 }
 
@@ -131,14 +133,14 @@ Color _mapButtonOverlayColor(AppType appType, CTAType ctaType) {
     case AppType.Delivery:
       return ctaType == CTAType.Primary
           ? Colors.white10
-          : DeliveryPrimary.withOpacity(.2);
+          : kDeliveryColor.withOpacity(.2);
     case AppType.Pharmacy:
       return ctaType == CTAType.Primary
           ? Colors.white10
-          : PharmacyPrimary.withOpacity(.2);
+          : kPharmacyColor.withOpacity(.2);
     default:
       return ctaType == CTAType.Primary
           ? Colors.white10
-          : CorePrimary.withOpacity(.2);
+          : kCoreColor.withOpacity(.2);
   }
 }

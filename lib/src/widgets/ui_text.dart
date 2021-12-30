@@ -21,21 +21,21 @@ class UIText extends StatelessWidget {
 
   const UIText.label(this.text,
       {this.fontWeight,
-      this.color = TextPrimaryColor,
+      this.color = kTextPrimaryLightColor,
       this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Label;
 
   const UIText.heading(this.text,
       {this.fontWeight,
-      this.color = TextPrimaryColor,
+      this.color = kTextPrimaryLightColor,
       this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Heading;
 
   const UIText.paragraph(this.text,
       {this.fontWeight,
-      this.color = TextPrimaryColor,
+      this.color = kTextPrimaryLightColor,
       this.size = TxtSize.Medium,
       this.textAlign = TextAlign.start})
       : type = TextType.Paragraph;
