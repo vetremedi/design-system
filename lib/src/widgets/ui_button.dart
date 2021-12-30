@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // enum BtnSize { Default, Small }
 enum CTAType { Primary, Secondary, Tertiary }
-enum AppType { Core, Pharmacy, Delivery }
+enum AppType { Core, Pharmacy, Delivery, Doctor }
 
 class UIButton extends StatelessWidget {
   final bool disabled;
@@ -121,6 +121,8 @@ Color _mapButtonColor(AppType appType) {
   switch (appType) {
     case AppType.Delivery:
       return kDeliveryColor;
+    case AppType.Doctor:
+      return kDoctorColor;
     case AppType.Pharmacy:
       return kPharmacyColor;
     default:
@@ -134,6 +136,10 @@ Color _mapButtonOverlayColor(AppType appType, CTAType ctaType) {
       return ctaType == CTAType.Primary
           ? Colors.white10
           : kDeliveryColor.withOpacity(.2);
+    case AppType.Doctor:
+      return ctaType == CTAType.Primary
+          ? Colors.white10
+          : kDoctorColor.withOpacity(.2);
     case AppType.Pharmacy:
       return ctaType == CTAType.Primary
           ? Colors.white10
