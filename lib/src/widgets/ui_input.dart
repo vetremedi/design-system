@@ -15,28 +15,30 @@ class UIInput extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextInputType inputType;
   final int? maxLength;
+  final double bottomPadding;
   final bool disabled;
 
-  const UIInput({
-    Key? key,
-    required this.controller,
-    this.disabled = false,
-    this.hasError = false,
-    this.inputType = TextInputType.text,
-    this.appType = AppType.Core,
-    this.label,
-    this.placeholder,
-    this.helper,
-    this.leading,
-    this.trailing,
-    this.onChanged,
-    this.maxLength,
-  }) : super(key: key);
+  const UIInput(
+      {Key? key,
+      required this.controller,
+      this.disabled = false,
+      this.hasError = false,
+      this.inputType = TextInputType.text,
+      this.appType = AppType.Core,
+      this.label,
+      this.placeholder,
+      this.helper,
+      this.leading,
+      this.trailing,
+      this.onChanged,
+      this.maxLength,
+      this.bottomPadding = 16})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: bottomPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
