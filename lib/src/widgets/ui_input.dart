@@ -8,6 +8,7 @@ class UIInput extends StatelessWidget {
   final String? helper;
   final bool hasError;
   final Widget? leading;
+  final Widget? trailing;
   final TextEditingController controller;
   final AppType appType;
 
@@ -27,6 +28,7 @@ class UIInput extends StatelessWidget {
     this.placeholder,
     this.helper,
     this.leading,
+    this.trailing,
     this.onChanged,
     this.maxLength,
   }) : super(key: key);
@@ -57,6 +59,7 @@ class UIInput extends StatelessWidget {
               fillColor: disabled ? kDisabledColor : null,
               hintText: placeholder,
               prefixIcon: leading,
+              suffixIcon: trailing,
               enabled: !disabled,
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6.0),
