@@ -85,7 +85,7 @@ class UIInput extends StatelessWidget {
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6.0),
                 borderSide: const BorderSide(
-                  color: kOutlineColor,
+                  color: kDisabledColor,
                   width: 2.0,
                 ),
               ),
@@ -112,6 +112,8 @@ Color _mapInputColor(AppType appType) {
       return kDeliveryColor;
     case AppType.Pharmacy:
       return kPharmacyColor;
+    case AppType.Doctor:
+      return kDoctorColor;
     default:
       return kCoreColor;
   }
