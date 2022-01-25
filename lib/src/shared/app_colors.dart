@@ -10,7 +10,7 @@ const Color kDoctorDarkColor = Color(0xFF0A1329);
 const Color kPharmacyColor = Color(0xFF4CAF50);
 const Color kPharmacyDarkColor = Color(0xFF0A290B);
 
-const Color kDeliveryColor = Color(0xFFfc7969);
+const Color kDeliveryColor = Colors.deepOrange;
 const Color kDeliveryDarkColor = Color(0xFF240A07);
 
 // Text Colors
